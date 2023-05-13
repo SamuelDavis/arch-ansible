@@ -1,0 +1,10 @@
+- become: user
+  hosts: localhost
+  tasks:
+    - community.general.pacman:
+        name: zsh
+      name: Install zsh
+    - name: Change shell
+      shell: chsh -s `which zsh`
+    - name: Install on-my-zsh
+      shell: export ZSH="$HOME" && curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s -- --unattended
