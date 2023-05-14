@@ -17,3 +17,5 @@ RUN cd yay-bin \
     && makepkg --install --syncdeps --noconfirm \
     && cd .. \
     && rm -r yay-bin
+
+CMD bash

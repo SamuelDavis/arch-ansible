@@ -1,4 +1,4 @@
-- become: user
+- become: true
   hosts: localhost
   tasks:
     - community.general.pacman:
@@ -6,5 +6,9 @@
       name: Install zsh
     - name: Change shell
       shell: chsh -s `which zsh`
-    - name: Install on-my-zsh
-      shell: export ZSH="$HOME" && curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s -- --unattended
+    - become_user: "{{ username }}"
+      name: Install on-my-zsh
+      shell: curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s -- --unattended
+    - community.general.pacman:
+        name: neovim
+      name: Install neovim
